@@ -1,5 +1,6 @@
 import flask
 import requests
+import datetime
 
 API_HOST = "http://13.234.16.29:10001/api"
 from Debugger import Debugger
@@ -17,11 +18,12 @@ class API:
         return (topics.json())
 
     def get_all_offsets(self, topics):
-        offset_dict = {}
+        offset_n_time_dict = {}
         for t in topics:
+            cur_time = datetime.datetime.now()
             offset = self.get_topic_info(t)['Latest_Offset']
-            offset_dict[t] = offset
-        return offset_dict
+            offset_n_time_dict[t] = [offset, cur_time]
+        return offset_n_time_dict
 
     # returns dict of topic info
     def get_topic_info(self, topic_name):
