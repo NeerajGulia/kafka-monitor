@@ -42,10 +42,7 @@ class Monitor:
 	def get_topic_consumers_lag(self, topic):
 		consumers_list = []
 		for consumer in self.get_consumer(topic):
-			d = {
-				consumer.decode(): self.get_consumer_lag(topic, consumer)
-				}
-			consumers_list.append(d)
+			consumers_list.append(self.get_consumer_lag(topic, consumer))
 		output = self.desc_topic(topic)
 		output['consumers'] = consumers_list
 		return output
@@ -102,15 +99,10 @@ class Monitor:
 		current_offsets = consumer.fetch_offsets()
 		pid_dict = {}
 		for p_id, stat in current_offsets:
-			consumer_id = None
-			hostname = None
-			if stat.metadata:
-				info = json.loads(stat.metadata.decode())
-				consumer_id = info.get('consumer_id')
-				hostname = info.get('hostname') 
-			pid_dict[p_id] = (latest_offsets[p_id].offset[0], stat.offset,
-							  consumer_id, hostname)
+			pid_dict[p_id] = (latest_offsets[p_id].offset[0], stat.offset)
 		lag_list = []
+		consumer_details = {}
+		consumer_details['name'] = consumer_group.decode()
 		for k,v in iteritems(pid_dict):
 			d = {
 				'Partition': k,
@@ -121,4 +113,5 @@ class Monitor:
 				#'Client_ID': v[3]
 			}
 			lag_list.append(d)
-		return lag_list
+		consumer_details['partitions'] = lag_list
+		return consumer_details
