@@ -1,8 +1,8 @@
 export class Topic {
     consumers: any = [];
     no_consumers = 0;
-    noreplica= 0;
-    nopartition = 0;
-    arrivalrate:any = [];
+    Replicas= 0;
+    Partitions = 0;
+    ArrivalRate:any = [];
     memory_consumption:any=[];
 }

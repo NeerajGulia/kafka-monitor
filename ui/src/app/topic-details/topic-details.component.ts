@@ -13,8 +13,8 @@ export class TopicDetailsComponent implements OnInit {
   consumers = {}
   arrival_rate = {}
   memory_consumption={}
-  scale = [{ name: '30 Sec', value: 30}, { name: '1 Min', value: 60}, { name: '2 Min', value: 120}, { name: '5 Min', value: 300}];
-  val = 30
+  scale = [{ name: '5Min', value: 300}, { name: '10Min', value: 600}, { name: '15Min', value: 900}];
+  val = 300
   topic_arrival_rate = 0
   topic: Topic = new Topic()
   subsription: Subscription;
@@ -25,11 +25,18 @@ export class TopicDetailsComponent implements OnInit {
       labels: [],
       datasets: [
         {
-          label: 'Consumer Lag',
+          label: 'Partition 0',
           backgroundColor: '#42A5F5',
           borderColor: '#1E88E5',
           data: []
+        },
+        {
+          label: 'Partition 1',
+          backgroundColor: '#423452',
+          borderColor: '#423452',
+          data: []
         }
+
       ]
     }
     this.options = {
@@ -84,6 +91,7 @@ export class TopicDetailsComponent implements OnInit {
     })
     this.getTopicDetailsService.topicDetailsSubject.subscribe((data: Topic) => {
       this.topic = data;
+      
       let labels = []
       let data_value = []
       // let physical_mem=[]
@@ -96,13 +104,25 @@ export class TopicDetailsComponent implements OnInit {
       // });
 
       this.topic.consumers.forEach(element => {
-        labels.push(element.cname)
-        data_value.push(element.lag)
+        labels.push(element.name)
+        
+        element.partitions.forEach((data, index)=>{
+          if (!data_value[index]){
+            data_value[index]=[]
+          }
+          data_value[index].push(data.Lag)
+        })
+        // data_value.push(element.partitions[0].Lag)
       });
       this.consumers['labels'] = labels
-      this.consumers['datasets'][0]['data'] = data_value
+      data_value.forEach((data, index)=>{
+        this.consumers['datasets'][index]['data'] = data
+      })
+      
       this.consumers = Object.assign({}, this.consumers)
       this.updateArrivalGraph(this.val)
+      console.log(this.consumers)
+
 
     })
 
@@ -121,17 +141,17 @@ export class TopicDetailsComponent implements OnInit {
   updateArrivalGraph(value) {
     let labels = []
     let data_value = []
-    for (let i = value; i > 0; i--) {
+    for (let i = value; i > 0; i-=10) {
       labels.push(i)
       data_value.push(0)
     }
-    this.topic.arrivalrate.forEach((element, index) => {
-      data_value[data_value.length - this.topic.arrivalrate.length + index] = Math.random()
+    this.topic.ArrivalRate.forEach((element, index) => {
+      data_value[data_value.length - this.topic.ArrivalRate.length + index] = element
     });
     this.arrival_rate['labels'] = labels
     this.arrival_rate['datasets'][0]['data'] = data_value
     this.arrival_rate = Object.assign({}, this.arrival_rate)
-    this.topic_arrival_rate = this.topic.arrivalrate[this.topic.arrivalrate.length - 1]
+    this.topic_arrival_rate = this.topic.ArrivalRate[this.topic.ArrivalRate.length - 1]
   }
 
 }
