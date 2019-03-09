@@ -1,0 +1,76 @@
+<div class="row">
+
+  <div class="col-md-2" style="border-right:#343a40 2px solid;" >
+    <div class="row">
+      <div class="card text-white bg-success mb-3" style="width: 80%; margin: auto; ">
+        <div class="card-header text-center">No. of Consumers</div>
+        <div class="card-body">
+          <h1 class="card-title text-center">{{topic.consumers.length}}</h1>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="card text-white bg-success mb-3" style="width: 80%; margin: auto; ">
+        <div class="card-header text-center">No. of Replica</div>
+        <div class="card-body">
+          <h1 class="card-title text-center">{{topic.noreplica}}</h1>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="card text-white bg-success mb-3" style="width: 80%; margin: auto; ">
+        <div class="card-header text-center">No. of Partitions</div>
+        <div class="card-body">
+          <h1 class="card-title text-center">{{topic.nopartition}}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-md-10" style="max-height:87vh; overflow-y: auto">
+    <div class="container" style="overflow-y: auto">
+    <div class="row" style="padding: 1%">
+      <h6 style="color: wheat">Consumer lag</h6>
+      <div class="col-md-12" style="border: #343a40 2px solid; border-radius: 2px">
+        <p-chart type="bar" [data]="consumers" height="30vh" [options]="options"></p-chart>
+      </div>
+    </div>
+    <div class="row" style="padding: 1%">
+        
+      <div class="col-md-9" style="border-bottom: #343a40 2px solid; border-radius: 2px">
+          <h6 style="color: wheat">Arrival rate</h6>
+        <p-chart type="line" [data]="arrival_rate" height="30vh" [options]="options"></p-chart>
+      </div>
+      <div class="col-md-1" style="border-bottom: #343a40 2px solid; border-radius: 2px">
+        <p class="text-center" style="color: white">Graph Scale</p>
+        <div style="margin: auto">
+          <!-- <p-slider [(ngModel)]="val" [min]="0" [max]="3" [step]="1" orientation="vertical" (onChange)="handleGraphScaleChange($event)"></p-slider> -->
+          <label *ngFor="let val of scale"  style="color: white"><input type="radio" [checked]="val.value==scale[0].value" [value]="val.value" name="group1" (change)="handleGraphScaleChange(val.value)">{{val.name}}
+          </label></div>
+      </div>
+      <div class="col-md-2" style="border-bottom: #343a40 2px solid; border-radius: 2px">
+        <div class="row">
+          <div class="card text-white bg-warning mb-3" style="width: 80%; margin: auto; ">
+            <div class="card-header text-center">Current Arrival Rate</div>
+            <div class="card-body">
+              <h1 class="card-title text-center">{{topic_arrival_rate}}</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="row" style="padding: 1%">
+        <div class="col-md-6">
+          <div class="row"><h6 style="color: wheat">Memory Consumption</h6></div>
+          <div class="row">
+            <div class="col-md-12">
+                <p-chart type="line" [data]="memory_consumption" height="30vh" [options]="options"></p-chart>
+            </div>
+          </div>
+        </div>
+       
+      </div> -->
+  </div>
+</div>

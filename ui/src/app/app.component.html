@@ -1,0 +1,18 @@
+<nav class="navbar navbar-dark navbar-expand-md  bg-dark " style="height: 10%;">
+  <span class="navbar-brand mb-0 h1" routerLink="/">Panda</span>
+  <button *ngIf="router.url.includes('topicdetails')" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+    aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div *ngIf="router.url.includes('topicdetails')" class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav  ml-auto">
+      <li class="nav-item" style="min-width: 10vw;">
+        <p style="color: white">Refresh Rate: {{val}} sec</p>
+        <p-slider [(ngModel)]="val" [min]="1" [max]="5" [step]="1" (onChange)="handleIntervalChange($event)"></p-slider>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container-fluid pt-3" style="background-color: #303030; height: 90%">
+  <router-outlet></router-outlet>
+</div>

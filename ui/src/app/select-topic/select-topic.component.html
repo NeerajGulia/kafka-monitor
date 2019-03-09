@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="offset-4 col-md-4 select-topic">
+    <select [(ngModel)]="selectedtopic" class="form-control">
+      <option selected value="">Select Topic</option>
+      <option *ngFor="let topic of topics" [value]="topic">{{topic}}</option>
+    </select>
+    <div style="text-align: center">
+      <button (click)="getTopicDetails()" class="btn btn-secondary btn-sm mt-4" [disabled]="!selectedtopic" type="button">Monitor Selected Topic</button>
+    </div>
+  </div>
+</div>

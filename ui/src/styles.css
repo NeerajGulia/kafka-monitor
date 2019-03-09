@@ -1,0 +1,9 @@
+/* You can add global styles to this file, and also import other style files */
+.select-topic {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+.ui-slider.ui-widget.ui-widget-content.ui-corner-all.ui-slider-vertical{
+    margin: auto
+}

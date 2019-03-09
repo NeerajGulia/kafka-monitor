@@ -1,0 +1,131 @@
+{
+    "consumers": [
+        {
+            "cid": "abc",
+            "cname": "abc",
+            "lag": 10
+        },
+        {
+            "cid": "bcd",
+            "cname": "bcd",
+            "lag": 4
+        },
+        {
+            "cid": "xxx",
+            "cname": "xxx",
+            "lag": 20
+        },
+        {
+            "cid": "absc",
+            "cname": "abc",
+            "lag": 10
+        },
+        {
+            "cid": "bcds",
+            "cname": "bcd",
+            "lag": 4
+        },
+        {
+            "cid": "xxxss",
+            "cname": "xxx",
+            "lag": 20
+        },
+        {
+            "cid": "absc",
+            "cname": "abc",
+            "lag": 10
+        },
+        {
+            "cid": "bcds",
+            "cname": "bcd",
+            "lag": 4
+        },
+        {
+            "cid": "xxxss",
+            "cname": "xxx",
+            "lag": 20
+        },
+        {
+            "cid": "absc",
+            "cname": "abc",
+            "lag": 10
+        },
+        {
+            "cid": "bcds",
+            "cname": "bcd",
+            "lag": 4
+        },
+        {
+            "cid": "xxxss",
+            "cname": "xxx",
+            "lag": 20
+        },
+        {
+            "cid": "absc",
+            "cname": "abc",
+            "lag": 10
+        },
+        {
+            "cid": "bcds",
+            "cname": "bcd",
+            "lag": 4
+        },
+        {
+            "cid": "xxxss",
+            "cname": "xxx",
+            "lag": 20
+        },
+        {
+            "cid": "absc",
+            "cname": "abc",
+            "lag": 10
+        },
+        {
+            "cid": "bcds",
+            "cname": "bcd",
+            "lag": 4
+        },
+        {
+            "cid": "xxxss",
+            "cname": "xxx",
+            "lag": 20
+        },
+        {
+            "cid": "absc",
+            "cname": "abc",
+            "lag": 10
+        },
+        {
+            "cid": "bcds",
+            "cname": "bcd",
+            "lag": 4
+        },
+        {
+            "cid": "xxxss",
+            "cname": "xxx",
+            "lag": 20
+        }
+    ],
+    "noreplica": 5,
+    "nopartition": 5,
+    "arrivalrate": [
+        2,
+        12,
+        121,
+        232,
+        13,
+        42,
+        344,
+        63,
+        23,
+        245,
+        44,
+        23,
+        23,
+        123
+    ],
+
+    "memory_consumption":{"Physical":[12,241,124,124,346,24,235,456,234,346,235],
+        "virtual":[12,241,124,124,346,24,235,456,234,346,235],
+        "swap":[12,241,124,135,34,346,457,35,234,456,352]}
+}
